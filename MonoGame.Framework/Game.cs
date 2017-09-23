@@ -85,11 +85,11 @@ namespace Microsoft.Xna.Framework
             Dispose(false);
         }
 
-		[System.Diagnostics.Conditional("DEBUG")]
-		internal void Log(string Message)
-		{
-			if (Platform != null) Platform.Log(Message);
-		}
+        [System.Diagnostics.Conditional("DEBUG")]
+        internal void Log(string Message)
+        {
+            if (Platform != null) Platform.Log(Message);
+        }
 
         #region IDisposable Implementation
 
@@ -398,7 +398,7 @@ namespace Microsoft.Xna.Framework
 
                 Platform.RunLoop();
                 EndRun();
-				DoExiting();
+                DoExiting();
                 break;
             default:
                 throw new ArgumentException(string.Format(
@@ -563,24 +563,24 @@ namespace Microsoft.Xna.Framework
         protected virtual void Update(GameTime gameTime)
         {
             _updateables.ForEachFilteredItem(UpdateAction, gameTime);
-		}
+        }
 
         protected virtual void OnExiting(object sender, EventArgs args)
         {
             EventHelpers.Raise(this, Exiting, args);
         }
-		
-		protected virtual void OnActivated (object sender, EventArgs args)
-		{
-			AssertNotDisposed();
+        
+        protected virtual void OnActivated (object sender, EventArgs args)
+        {
+            AssertNotDisposed();
             EventHelpers.Raise(this, Activated, args);
-		}
-		
-		protected virtual void OnDeactivated (object sender, EventArgs args)
-		{
-			AssertNotDisposed();
+        }
+        
+        protected virtual void OnDeactivated (object sender, EventArgs args)
+        {
+            AssertNotDisposed();
             EventHelpers.Raise(this, Deactivated, args);
-		}
+        }
 
         #endregion Protected Methods
 
@@ -608,7 +608,7 @@ namespace Microsoft.Xna.Framework
             var platform = (GamePlatform)sender;
             platform.AsyncRunLoopEnded -= Platform_AsyncRunLoopEnded;
             EndRun();
-			DoExiting();
+            DoExiting();
         }
 
         #endregion Event Handlers
@@ -622,18 +622,18 @@ namespace Microsoft.Xna.Framework
 #if !(WINDOWS && DIRECTX)
         internal void applyChanges(GraphicsDeviceManager manager)
         {
-			Platform.BeginScreenDeviceChange(GraphicsDevice.PresentationParameters.IsFullScreen);
+            Platform.BeginScreenDeviceChange(GraphicsDevice.PresentationParameters.IsFullScreen);
 
             if (GraphicsDevice.PresentationParameters.IsFullScreen)
                 Platform.EnterFullScreen();
             else
                 Platform.ExitFullScreen();
             var viewport = new Viewport(0, 0,
-			                            GraphicsDevice.PresentationParameters.BackBufferWidth,
-			                            GraphicsDevice.PresentationParameters.BackBufferHeight);
+                                        GraphicsDevice.PresentationParameters.BackBufferWidth,
+                                        GraphicsDevice.PresentationParameters.BackBufferHeight);
 
             GraphicsDevice.Viewport = viewport;
-			Platform.EndScreenDeviceChange(string.Empty, viewport.Width, viewport.Height);
+            Platform.EndScreenDeviceChange(string.Empty, viewport.Width, viewport.Height);
         }
 #endif
 
@@ -643,7 +643,7 @@ namespace Microsoft.Xna.Framework
             if (Platform.BeforeUpdate(gameTime))
             {
                 FrameworkDispatcher.Update();
-				
+                
                 Update(gameTime);
 
                 //The TouchPanel needs to know the time for when touches arrive
@@ -683,11 +683,11 @@ namespace Microsoft.Xna.Framework
             _components.ComponentRemoved += Components_ComponentRemoved;
         }
 
-		internal void DoExiting()
-		{
-			OnExiting(this, EventArgs.Empty);
-			UnloadContent();
-		}
+        internal void DoExiting()
+        {
+            OnExiting(this, EventArgs.Empty);
+            UnloadContent();
+        }
 
         #endregion Internal Methods
 

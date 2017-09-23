@@ -14,7 +14,16 @@ namespace Microsoft.Xna.Framework
 
         public Graphics.GraphicsDevice GraphicsDevice
         {
-            get { return this.Game.GraphicsDevice; } 
+            get {
+                if (this.Game == null)
+                {
+                    throw new ArgumentNullException("game");
+                }
+                else
+                {
+                    return this.Game.GraphicsDevice;
+                }
+            }
         }
 
         public int DrawOrder

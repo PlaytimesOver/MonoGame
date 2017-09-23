@@ -42,6 +42,11 @@ namespace Microsoft.Xna.Framework
         public event EventHandler<EventArgs> EnabledChanged;
         public event EventHandler<EventArgs> UpdateOrderChanged;
 
+        public GameComponent()
+        {
+
+        }
+
         public GameComponent(Game game)
         {
             this.Game = game;
